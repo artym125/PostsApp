@@ -24,4 +24,22 @@ class PostsViewModel {
             }
         }
     }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        if allPosts.count != 0 {
+            return allPosts.count
+        }
+        return 0
+    }
+    
+    func cellForRowAt(indexPath: IndexPath) -> Post {
+        return allPosts[indexPath.row]
+    }
+    func sortByDate() {
+        allPosts.sort { $0.timeshamp > $1.timeshamp }
+    }
+    
+    func sortByRate() {
+        allPosts.sort { $0.likesCount > $1.likesCount }
+    }
 }

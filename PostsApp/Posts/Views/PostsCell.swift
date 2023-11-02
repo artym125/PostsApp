@@ -10,12 +10,14 @@ import UIKit
 class PostsCell: UITableViewCell {
     
     static let identifier = "PostsCell"
-    weak var tableView: UITableView?
     
-    var mainLabel: UILabel
-    var subLabel: UILabel
-    var likesCount: UILabel
-    var dateCount: UILabel
+    weak var tableView: UITableView?
+    private var isExpanded = false
+    
+    var mainLabel: UILabel = UILabel()
+    var subLabel: UILabel = UILabel()
+    var likesCount: UILabel = UILabel()
+    var dateCount: UILabel = UILabel()
     
     private lazy var cellView: UIView = {
         let view = UIView()
@@ -58,6 +60,7 @@ class PostsCell: UITableViewCell {
         setLabels()
         setSubviews()
         setConstraints()
+        expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
